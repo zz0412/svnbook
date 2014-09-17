@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>svn cat</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <meta name="generator" content="DocBook XSL Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="Version Control with Subversion" />
+    <link rel="up" href="svn.ref.svn.html#svn.ref.svn.c" title="svn Subcommands" />
+    <link rel="prev" href="svn.ref.svn.c.blame.html" title="svn blame (praise, annotate, ann)" />
+    <link rel="next" href="svn.ref.svn.c.changelist.html" title="svn changelist (cl)" />
+  </head>
+  <body>
+    <div xmlns="" id="vcws-version-notice">
+      <p>This documentation was written to describe the 1.7.x series of
+       Apache™ Subversion®.  If you are running a different
+       version of Subversion, you are strongly encouraged to visit <a href="http://www.svnbook.com/">http://www.svnbook.com/</a> and
+       instead consult the version of this documentation appropriate for
+       your version of Subversion.</p>
+    </div>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">svn cat</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="svn.ref.svn.c.blame.html">Prev</a> </td>
+          <th width="60%" align="center">svn Subcommands</th>
+          <td width="20%" align="right"> <a accesskey="n" href="svn.ref.svn.c.changelist.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="refentry" title="svn cat">
+      <a id="svn.ref.svn.c.cat"></a>
+      <div class="titlepage"></div>
+      <a id="idp18001600" class="indexterm"></a>
+      <div class="refnamediv">
+        <h2>Name</h2>
+        <p>svn cat — Output the contents of the specified files or
+            URLs.</p>
+      </div>
+      <div class="refsect1" title="Synopsis">
+        <a id="idp18004720"></a>
+        <h2>Synopsis</h2>
+        <p>
+          <code class="literal">svn cat TARGET[@REV]...</code>
+        </p>
+      </div>
+      <div class="refsect1" title="Description">
+        <a id="idp18006336"></a>
+        <h2>Description</h2>
+        <p>Output the contents of the specified files or URLs.
+            For listing the contents of directories, see <span class="command"><strong>svn
+            list</strong></span> later in this chapter.</p>
+      </div>
+      <div class="refsect1" title="Options">
+        <a id="idp18008368"></a>
+        <h2>Options</h2>
+        <div class="informalexample">
+          <pre class="screen">
+<a class="xref" href="svn.ref.svn.html#svn.ref.svn.sw.revision"><code class="option">--revision</code> (<code class="option">-r</code>) <em class="replaceable"><code>REV</code></em></a>
+</pre>
+        </div>
+      </div>
+      <div class="refsect1" title="Examples">
+        <a id="idp18010880"></a>
+        <h2>Examples</h2>
+        <p>If you want to view <code class="filename">readme.txt</code> in
+            your repository without checking it out:</p>
+        <div class="informalexample">
+          <pre class="screen">
+$ svn cat http://svn.red-bean.com/repos/test/readme.txt
+This is a README file.
+Don't bother reading it.  The boss is a knucklehead.
+ 
+INSTRUCTIONS
+============
+
+Step 1:  Do this.
+
+Step 2:  Do that.
+$
+</pre>
+        </div>
+        <p>You can view specific versions of files, too.</p>
+        <div class="informalexample">
+          <pre class="screen">
+$ svn cat -r 3 http://svn.red-bean.com/repos/test/readme.txt
+This is a README file.
+ 
+INSTRUCTIONS
+============
+
+Step 1:  Do this.
+
+Step 2:  Do that.
+$
+</pre>
+        </div>
+        <div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25">
+                <img alt="[Note]" src="images/note.png" />
+              </td>
+              <th align="left">Note</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>You might develop a reflex action of
+              using <span class="command"><strong>svn cat</strong></span> to view your working
+              file contents.  But keep in mind that the default peg
+              revision for <span class="command"><strong>svn cat</strong></span> when used on a
+              working copy file target is <code class="literal">BASE</code>, the
+              unmodified base revision of that file.  Don't be
+              surprised when a simple <strong class="userinput"><code>svn cat
+              /path/to/file</code></strong> invocation fails to display
+              your local modifications to that file!</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" title="Tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top" width="25">
+                <img alt="[Tip]" src="images/tip.png" />
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>If your working copy is out of date (or you have
+              local modifications) and you want to see the
+              <code class="literal">HEAD</code> revision of a file in your
+              working copy, use the <code class="option">--revision</code>
+              (<code class="option">-r</code>) option:  <strong class="userinput"><code>svn cat -r
+              HEAD <em class="replaceable"><code>FILENAME</code></em></code></strong></p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="svn.ref.svn.c.blame.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="svn.ref.svn.html#svn.ref.svn.c">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="svn.ref.svn.c.changelist.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">svn blame (praise, annotate, ann) </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> svn changelist (cl)</td>
+        </tr>
+      </table>
+    </div>
+    <div xmlns="" id="vcws-footer">
+      <hr />
+      <p>You are reading <em>Version Control with Subversion</em> (for
+       Subversion 1.7), by Ben Collins-Sussman, Brian W. Fitzpatrick, and
+       C. Michael Pilato.<br />This work is licensed under the <a href="http://creativecommons.org/licenses/by/2.0/">Creative
+       Commons Attribution License v2.0</a>.<br />To submit comments,
+       corrections, or other contributions to the text, please visit <a href="http://www.svnbook.com/">http://www.svnbook.com/</a>.</p>
+    </div>
+  </body>
+</html>
