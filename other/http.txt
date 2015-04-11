@@ -1,2 +1,3 @@
-# 用;分隔
-m.javaw.tk;t.javaw.tk;
+# 用换行分隔
+m.javaw.tk
+t.javaw.tk
